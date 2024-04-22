@@ -324,6 +324,10 @@
         {
           "name": "Culture",
           "slug": "culture"
+        },
+        {
+          "name": "Destaque Home",
+          "slug": "destaque-home"
         }
       ],
       "excerpt": "We believe in a web that is simple, scalable, and collaborative. A web where anyone can test ideas and build without fear. Let's make that vision a reality."
@@ -497,11 +501,12 @@
       },
       {
         "__resolveType": "site/sections/BlogPosts.tsx",
+        "pagination": {},
+        "cta": {},
         "posts": {
           "__resolveType": "blog/loaders/BlogpostList.ts",
-          "count": 4
-        },
-        "pagination": {}
+          "count": 3
+        }
       },
       {
         "__resolveType": "site/sections/Footer.tsx"
@@ -540,6 +545,14 @@
     "firstByteThresholdMS": false,
     "theme": {
       "__resolveType": "Neutral"
+    }
+  },
+  "collections/blog/categories/13c350126a56": {
+    "name": "collections/blog/categories/13c350126a56",
+    "__resolveType": "blog/loaders/Category.ts",
+    "category": {
+      "name": "Destaque Home",
+      "slug": "destaque-home"
     }
   }
 }
