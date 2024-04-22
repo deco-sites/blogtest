@@ -505,10 +505,11 @@
       },
       {
         "__resolveType": "site/sections/BlogPosts.tsx",
-        "pagination": {},
-        "cta": {},
-        "posts": null,
-        "slug": "destaque-home"
+        "posts": {
+          "__resolveType": "blog/loaders/BlogpostList.ts",
+          "count": 6
+        },
+        "slug": "culture"
       },
       {
         "__resolveType": "site/sections/Footer.tsx"
