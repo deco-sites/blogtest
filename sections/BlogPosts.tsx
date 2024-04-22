@@ -1,11 +1,42 @@
+import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-import { ComponentChildren } from "preact";
-import { AppContext } from "apps/blog/mod.ts";
+import { usePartialSection } from "deco/hooks/usePartialSection.ts";
+import { ComponentChildren, Fragment } from "preact";
 import { BlogPost } from "apps/blog/types.ts";
-import { getRecordsByPath } from "apps/blog/utils/records.ts";
-export interface Props {
-  slug?: string;
+import { useId } from "../sdk/useId.ts";
+
+export interface CTA {
+  text?: string;
 }
+
+/** @title {{{title}}} */
+export interface Post {
+  url?: string;
+  title?: string;
+  author?: string;
+  excerpt?: string;
+  image?: ImageWidget;
+  date?: string;
+  readingTime?: string;
+  tags?: string[];
+}
+
+export interface Props {
+  cta?: CTA;
+  posts?: BlogPost[] | null;
+  pagination?: {
+    /**
+     * @title First page
+     * @description Leave it as 0 to start from the first page
+     */
+    page?: number;
+    /** @title items per page */
+    perPage?: number;
+  };
+} 
+
+const DEFAULT_IMAGE =
+  "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/4763/682eb374-def2-4e85-a45d-b3a7ff8a31a9";
 
 function Container({ children }: { children: ComponentChildren }) {
   return (
@@ -15,14 +46,188 @@ function Container({ children }: { children: ComponentChildren }) {
   );
 }
 
-export default function BlogPosts({ posts }: ReturnType<typeof loader>) {
-  console.log(posts, "posts");
+export default function BlogPosts({
+  cta = { text: "Show more" },
+  posts = [
+    {
+      slug: "/",
+      title: "Title of blogpost #1",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #2",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #3",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #4",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #5",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #6",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #7",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #8",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #9",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #10",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #11",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #12",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+    {
+      slug: "/",
+      title: "Title of blogpost #13",
+      authors: [{ name: "Name of the author", email: "author@deco.cx" }],
+      excerpt:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
+      image: DEFAULT_IMAGE,
+      date: "01 Apr 2024",
+      categories: [{ name: "Tag#1", slug: "tag-1" }],
+      content: "Blog Post Content"
+    },
+  ],
+  pagination: {
+    page = 0,
+    perPage = 6,
+  } = {},
+}: Props) {
+  const from = perPage * page;
+  const to = perPage * (page + 1);
+
+  // It's boring to generate ids. Let's autogen them
+  const postList = useId();
+
+  // Get the HTMX link for this section
+  const fetchMoreLink = usePartialSection({
+    mode: "append",
+    // Renders this section with the next page
+    props: {
+      pagination: { perPage, page: page + 1 },
+    },
+  })["f-partial"];
+
+  function calculateReadingTime(words: number): string {
+    const wordsPerMinute = 250;
+    const estimatedTimeMinutes = words / wordsPerMinute;
+
+    const roundedReadingTime = Math.round(estimatedTimeMinutes);
+    return `${roundedReadingTime} min`;
+  }
+
+  const ContainerComponent = page === 0 ? Container : Fragment;
 
   return (
-    <Container>
+    <ContainerComponent>
       <>
         <div class="gap-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
-          {posts.map((post) => (
+          {posts.slice(from, to).map((post) => (
             <a
               href={`/blog/${post.slug}`}
               class="border border-secondary overflow-hidden rounded-lg"
@@ -38,6 +243,7 @@ export default function BlogPosts({ posts }: ReturnType<typeof loader>) {
                 loading="lazy"
               />
               <div class="p-6 space-y-4">
+                <div class="font-semibold">{calculateReadingTime(post.content.split(" ").length)}</div>
                 <div class="space-y-2">
                   <h3 class="text-2xl">{post.title}</h3>
                   <p class="text-base">{post.excerpt}</p>
@@ -50,15 +256,13 @@ export default function BlogPosts({ posts }: ReturnType<typeof loader>) {
                   ))}
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  <span>
-                    {post.date
-                      ? new Date(post.date).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })
-                      : ""}
-                  </span>
+                  <span>{post.date
+                    ? new Date(post.date).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })
+                    : ""}</span>
                   <span>•</span>
                   <span>{post.authors[0]?.name}</span>
                 </div>
@@ -66,40 +270,23 @@ export default function BlogPosts({ posts }: ReturnType<typeof loader>) {
             </a>
           ))}
         </div>
+        {to < posts.length && (
+          <div class="flex justify-center w-full" id={postList}>
+            <button
+              hx-get={fetchMoreLink}
+              hx-swap="outerHTML"
+              hx-target={`#${postList}`}
+              aria-label={cta.text}
+              class="btn btn-primary"
+            >
+              <span class="inline [.htmx-request_&]:hidden">
+                {cta.text}
+              </span>
+              <span class="loading loading-spinner hidden [.htmx-request_&]:block" />
+            </button>
+          </div>
+        )}
       </>
-    </Container>
+    </ContainerComponent>
   );
-}
-
-const COLLECTION_PATH = "collections/blog/posts";
-const ACCESSOR = "post";
-
-/**
- * @title BlogPostCategory
- * @description Fetches a specific blog post page by its category slug.
- *
- * @param props - Contains the slug of the category.
- * @param _req - The request object (unused).
- * @param ctx - The application context.
- * @returns A promise that resolves to the blog post or undefined if not found.
- */
-export async function loader(props: Props, req: Request, ctx: AppContext) {
-  const posts = await getRecordsByPath<BlogPost>(
-    ctx,
-    COLLECTION_PATH,
-    ACCESSOR
-  );
-
-  const categoryPosts = posts.filter(
-    (post) => post.categories.findIndex((cat) => cat.slug === props.slug) !== -1
-  );
-
-  console.log(posts, "posts geral");
-  console.log(categoryPosts, "kkkk");
-
-  if (!categoryPosts) {
-    return null;
-  }
-
-  return { ...props, posts: categoryPosts };
 }
