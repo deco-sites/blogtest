@@ -102,7 +102,8 @@
     "posts": {
       "__resolveType": "blog/loaders/BlogpostList.ts",
       "count": 6
-    }
+    },
+    "slug": "culture"
   },
   "Preview /sections/Faq.tsx": {
     "__resolveType": "site/sections/Faq.tsx",
@@ -131,6 +132,21 @@
   },
   "Preview /sections/Testimonials.tsx": {
     "__resolveType": "site/sections/Testimonials.tsx"
+  },
+  "Preview blog/loaders/BlogPostItem.ts": {
+    "__resolveType": "blog/loaders/BlogPostItem.ts"
+  },
+  "Preview blog/loaders/BlogPostPage.ts": {
+    "__resolveType": "blog/loaders/BlogPostPage.ts"
+  },
+  "Preview blog/loaders/BlogpostList.ts": {
+    "__resolveType": "blog/loaders/BlogpostList.ts"
+  },
+  "Preview blog/loaders/Category.ts": {
+    "__resolveType": "blog/loaders/Category.ts"
+  },
+  "Preview website/actions/secrets/encrypt.ts": {
+    "__resolveType": "website/actions/secrets/encrypt.ts"
   },
   "Serene Coastline": {
     "__resolveType": "site/sections/Theme/Theme.tsx",
@@ -257,6 +273,14 @@
       "avatar": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/1527/7286de42-e9c5-4fcb-ae8b-b992eea4b78e"
     }
   },
+  "collections/blog/categories/13c350126a56": {
+    "name": "collections/blog/categories/13c350126a56",
+    "__resolveType": "blog/loaders/Category.ts",
+    "category": {
+      "name": "Destaque Home",
+      "slug": "destaque-home"
+    }
+  },
   "collections/blog/categories/295e9e7730f9": {
     "name": "collections/blog/categories/295e9e7730f9",
     "__resolveType": "blog/loaders/Category.ts",
@@ -295,6 +319,10 @@
         {
           "name": "Customization",
           "slug": "customization"
+        },
+        {
+          "name": "Destaque Home",
+          "slug": "destaque-home"
         }
       ],
       "content": "<h1>Lorem Ipsum Dolor Sit Tiptap</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Nullam faucibus venenatis quam, ut laoreet nisi fermentum eget.</strong> Sed <em>pellentesque</em> egestas odio, <u>quis viverra nunc gravida non</u>. <s>Integer imperdiet ligula et lectus pharetra porta.</s></p><h2>H2: Maecenas Ultrices Ullamcorper Felis</h2><p>Donec <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://www.deco.cx/\">pulvinar</a> magna nec mi sodales, in volutpat tortor pretium. Phasellus <code>consequat</code> libero eu ligula aliquet, id ornare metus ultrices.</p><h3>H3: Aenean sed diam ipsum</h3><ul><li><p>Lorem ipsum dolor sit amet</p></li><li><p>Vestibulum ante ipsum primis</p></li><li><p>Proin accumsan porttitor felis</p></li></ul><h3>H3: Ordered List Example</h3><p>1. Praesent elementum ante nec nibh rhoncus 2. Mauris vel tincidunt turpis 3. Donec a volutpat diam</p><h2>Image Time!</h2><p><img src=\"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/4763/682eb374-def2-4e85-a45d-b3a7ff8a31a9\"></p><h2>Blockquote with a Twist</h2><blockquote><p>Fusce finibus mauris vitae eros tincidunt, vitae vulputate neque egestas. Sed in ex ac urna volutpat ornare.</p><p></p></blockquote><p>Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>",
@@ -489,7 +517,22 @@
     "path": "/",
     "sections": [
       {
-        "__resolveType": "site/sections/Header.tsx"
+        "__resolveType": "site/sections/Header.tsx",
+        "navigation": {
+          "links": [],
+          "buttons": []
+        },
+        "variation": "primary",
+        "internationalization": false,
+        "navItems": [
+          {
+            "children": [],
+            "image": [],
+            "name": "teste",
+            "url": "/teste",
+            "identifier": "Test"
+          }
+        ]
       },
       {
         "__resolveType": "site/sections/Hero.tsx",
@@ -509,7 +552,7 @@
           "__resolveType": "blog/loaders/BlogpostList.ts",
           "count": 6
         },
-        "slug": "culture"
+        "slug": "destaque-home"
       },
       {
         "__resolveType": "site/sections/Footer.tsx"
@@ -550,35 +593,7 @@
       "__resolveType": "Neutral"
     }
   },
-  "collections/blog/categories/13c350126a56": {
-    "name": "collections/blog/categories/13c350126a56",
-    "__resolveType": "blog/loaders/Category.ts",
-    "category": {
-      "name": "Destaque Home",
-      "slug": "destaque-home"
-    }
-  },
-  "Preview blog/loaders/BlogpostList.ts": {
-    "__resolveType": "blog/loaders/BlogpostList.ts"
-  },
-  "Preview blog/loaders/BlogPostItem.ts": {
-    "__resolveType": "blog/loaders/BlogPostItem.ts"
-  },
-  "Preview website/actions/secrets/encrypt.ts": {
-    "__resolveType": "website/actions/secrets/encrypt.ts"
-  },
-  "Preview blog/loaders/Category.ts": {
-    "__resolveType": "blog/loaders/Category.ts"
-  },
-  "Preview blog/loaders/BlogPostPage.ts": {
-    "__resolveType": "blog/loaders/BlogPostPage.ts"
-  },
-  "collections/blog/posts/c5777920cbbe": {
-    "name": "collections/blog/posts/c5777920cbbe",
-    "__resolveType": "blog/loaders/Blogpost.ts",
-    "post": {
-      "authors": [],
-      "categories": []
-    }
+  "Preview /sections/Header.tsx": {
+    "__resolveType": "site\\sections\\Header.tsx"
   }
 }
