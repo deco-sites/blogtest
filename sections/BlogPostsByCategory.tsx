@@ -1,10 +1,11 @@
-import Image from "apps/website/components/Image.tsx";
 import { ComponentChildren } from "preact";
 import { AppContext } from "apps/blog/mod.ts";
 import { BlogPost } from "apps/blog/types.ts";
 import { getRecordsByPath } from "apps/blog/utils/records.ts";
+import { BlogCard } from "site/components/ui/Blog/BlogCard.tsx";
 
 export interface Props {
+  sectionTitle?: string;
   slug?: string;
 }
 
@@ -18,53 +19,17 @@ function Container({ children }: { children: ComponentChildren }) {
 
 export default function BlogPosts({
   posts,
+  sectionTitle,
 }: Awaited<ReturnType<typeof loader>>) {
   return (
     <Container>
       <>
-        <div class="gap-8 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
+        <h2 class="text-xl text-accent font-medium py-6 px-2">
+          {sectionTitle}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-auto items-stretch gap-8">
           {posts?.map((post) => (
-            <a
-              href={`/blog/${post.slug}`}
-              class="border border-secondary overflow-hidden rounded-lg"
-            >
-              <Image
-                width={380}
-                height={274}
-                class="object-fit w-full"
-                sizes="(max-width: 640px) 100vw, 30vw"
-                src={post.image || ""}
-                alt={post.image}
-                decoding="async"
-                loading="lazy"
-              />
-              <div class="p-6 space-y-4">
-                <div class="space-y-2">
-                  <h3 class="text-2xl">{post.title}</h3>
-                  <p class="text-base">{post.excerpt}</p>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  {post.categories?.map((category) => (
-                    <div class="badge badge-lg badge-primary text-xs">
-                      {category.name}
-                    </div>
-                  ))}
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  <span>
-                    {post.date
-                      ? new Date(post.date).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })
-                      : ""}
-                  </span>
-                  <span>•</span>
-                  <span>{post.authors[0]?.name}</span>
-                </div>
-              </div>
-            </a>
+            <BlogCard post={post} />
           ))}
         </div>
       </>
